@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>王玮 · 作品集</title>
+<style>
+/* ── Reset & Base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;background:#fafaf9;color:#1c1c1c;line-height:1.7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}body::before{content:'';position:fixed;top:0;left:0;width:100vw;height:100vh;background:radial-gradient(ellipse at 50% 50%,transparent 30%,rgba(28,28,28,0.04) 100%);pointer-events:none;z-index:-1}
+::selection{background:rgba(201,169,110,0.2);color:#1c1c1c}
+h1,h2,h3,h4{font-family:Georgia,"Noto Serif SC","Songti SC","SimSun","STSong",serif;font-weight:700;letter-spacing:0.02em;color:#1c1c1c}
+h1{font-size:clamp(2.8rem,6vw,4.4rem);line-height:1.15;letter-spacing:-0.01em}
+h2{font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:2.8rem;position:relative}
+h2::after{content:'';display:block;width:44px;height:2px;background:linear-gradient(90deg,#c9a96e,rgba(201,169,110,0.15));margin-top:0.8rem;border-radius:2px}
+h3{font-size:clamp(1.05rem,1.4vw,1.2rem);margin-bottom:0.4rem;letter-spacing:0.01em}
+h4{font-size:clamp(0.95rem,1.1vw,1.05rem);margin-bottom:0.3rem}
+p{color:#4a4a4a;font-size:clamp(0.92rem,1.05vw,1.02rem)}
+a{color:inherit;text-decoration:none;transition:color .3s}
+img{display:block;max-width:100%;height:auto}
+ul{list-style:none}
+.container{max-width:1140px;margin:0 auto;padding:0 28px}
+section{padding:clamp(3.6rem,8vw,6.4rem) 0;position:relative}
+section+section{border-top:1px solid rgba(28,28,28,0.04);position:relative}section+section::before{content:'';position:absolute;top:-4px;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:rgba(201,169,110,0.25);border:1px solid rgba(201,169,110,0.15)}
+/* ── Navigation ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:center;transition:all .4s ease}
+nav.scrolled{background:rgba(250,250,249,0.72);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);box-shadow:0 1px 0 rgba(28,28,28,0.05)}
+nav .logo{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:1.2rem;font-weight:700;letter-spacing:0.08em;color:#1c1c1c}
+nav .logo .accent{color:#c9a96e}
+#navLinks{display:flex;gap:2.2rem;list-style:none}
+#navLinks a{font-size:0.875rem;font-weight:450;color:#6b6b6b;position:relative;padding-bottom:3px;transition:color .3s;letter-spacing:0.04em}
+#navLinks a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1.5px;background:#c9a96e;transition:width .35s ease;border-radius:1px}
+#navLinks a:hover{color:#1c1c1c}#navLinks a:hover::after{width:100%}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;z-index:1001}
+.nav-toggle span{display:block;width:26px;height:2px;background:#1c1c1c;border-radius:2px;transition:all .3s ease;transform-origin:center}
+.nav-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.nav-toggle.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+/* ── Hero ── */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding-top:68px;border-top:none!important;position:relative;overflow:hidden}
+#hero::before{content:"";position:absolute;top:-40%;right:-20%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,0.06) 0%,transparent 70%);pointer-events:none}
+#hero::after{content:"";position:absolute;bottom:-30%;left:-20%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,0.04) 0%,transparent 70%);pointer-events:none}
+#hero .hero-inner{position:relative;z-index:1}
+#hero .subtitle{font-size:clamp(0.8rem,1.05vw,0.95rem);color:#c9a96e;letter-spacing:0.45em;text-transform:uppercase;margin-bottom:1.5rem;font-weight:500;font-family:inherit}
+#hero h1{font-size:clamp(2rem,4.5vw,3rem);line-height:1.4;margin-bottom:1rem}#hero .name-sub{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:clamp(0.82rem,1vw,0.95rem);color:#999;font-weight:400;letter-spacing:0.12em;margin-bottom:2rem}
+#hero .tagline{max-width:480px;margin:0 auto 2.8rem;color:#6b6b6b;font-size:clamp(0.92rem,1.1vw,1rem);line-height:1.7}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 2.2rem;border-radius:100px;font-size:0.88rem;font-weight:500;border:1px solid transparent;cursor:pointer;transition:all .4s cubic-bezier(0.25,0.1,0.15,1);font-family:inherit}
+.btn-primary{background:#1c1c1c;color:#fafaf9;border-color:#1c1c1c}
+.btn-primary:hover{background:#c9a96e;border-color:#c9a96e;transform:translateY(-3px);box-shadow:0 12px 32px rgba(201,169,110,0.28)}
+.btn-outline{background:transparent;color:#1c1c1c;border-color:rgba(28,28,28,0.14)}
+.btn-outline:hover{border-color:#c9a96e;color:#c9a96e;transform:translateY(-3px);box-shadow:0 12px 32px rgba(201,169,110,0.12)}
+.scroll-indicator{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:#b0b0b0;font-size:0.7rem;letter-spacing:0.15em;opacity:0;animation:fadeUp 1s ease 2s forwards}
+.scroll-dot{width:2px;height:24px;border-radius:2px;background:linear-gradient(to bottom,#c9a96e,transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:0.4;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.6)}}
+@keyframes fadeUp{to{opacity:1}}
+/* ── About ── */
+.about-grid{max-width:680px;margin:0 auto}
+.about-text p+p{margin-top:1.1rem}.about-text .highlight-text{color:#1c1c1c;font-weight:500}
+.about-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.4rem}
+.about-tags span{font-size:0.75rem;color:#6b6b6b;background:#f4f2ef;padding:0.25rem 0.85rem;border-radius:100px;border:1px solid rgba(28,28,28,0.04)}
+/* ── Experience ── */
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.exp-block h3{margin-bottom:1.4rem;font-size:clamp(0.95rem,1.15vw,1.05rem);color:#c9a96e;letter-spacing:0.08em;font-weight:600}
+.timeline{position:relative;padding-left:2rem}.timeline::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:1px;background:rgba(28,28,28,0.08)}
+.tl-item{position:relative;padding-bottom:2.2rem}.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-2rem;top:8px;width:10px;height:10px;border-radius:50%;background:#c9a96e;border:2px solid #fafaf9;box-shadow:0 0 0 3px rgba(201,169,110,0.15);transition:box-shadow .35s}
+.tl-item:hover::before{box-shadow:0 0 0 5px rgba(201,169,110,0.18)}
+.tl-date{font-size:0.78rem;color:#c9a96e;font-weight:500;letter-spacing:0.04em;margin-bottom:0.2rem}
+.tl-item h4{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;font-weight:600}
+.tl-item p{font-size:0.88rem;color:#6b6b6b;margin-top:0.25rem;line-height:1.6}
+.tl-item .tl-sub{font-size:0.82rem;color:#999;margin-top:0.1rem}
+/* ── Projects ── */
+.project-category{margin-bottom:3rem}.project-category:last-child{margin-bottom:0}
+.project-category .cat-header{display:flex;align-items:center;gap:0.8rem;margin-bottom:1.4rem;border-left:2px solid rgba(201,169,110,0.2);padding-left:1rem}
+.project-category .cat-header .cat-icon{width:28px;height:28px;border-radius:50%;background:#f4f2ef;display:flex;align-items:center;justify-content:center;color:#c9a96e;font-size:0.85rem}
+.project-category .cat-header h3{font-size:clamp(1rem,1.3vw,1.1rem);font-weight:600;margin-bottom:0;font-family:Georgia,"Noto Serif SC","Songti SC",serif}
+.project-category .cat-header .cat-count{font-size:0.72rem;color:#b0b0b0;background:#f4f2ef;padding:0.1rem 0.6rem;border-radius:100px;margin-left:auto}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.4rem}
+.proj-card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid rgba(28,28,28,0.05);transition:all .45s cubic-bezier(0.25,0.1,0.15,1);cursor:pointer;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(28,28,28,0.02)}
+.proj-card:hover{transform:translateY(-6px);box-shadow:0 24px 56px rgba(28,28,28,0.07),0 4px 12px rgba(28,28,28,0.03)}
+.proj-card .proj-img{width:100%;aspect-ratio:16/9;overflow:hidden;background:#f4f2ef;position:relative}
+.proj-card .proj-img img{width:100%;height:100%;object-fit:cover;object-position:0 0;transition:transform .6s ease}
+.proj-card:hover .proj-img img{transform:scale(1.04)}
+.proj-card .proj-img .video-badge{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,0.6);color:#fff;font-size:0.7rem;padding:0.2rem 0.7rem;border-radius:100px;backdrop-filter:blur(4px);display:flex;align-items:center;gap:4px}
+.proj-card .proj-img .play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.88);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .4s ease;box-shadow:0 4px 16px rgba(0,0,0,0.1)}
+.proj-card:hover .proj-img .play-btn{opacity:1}
+.proj-card .proj-info{padding:1.2rem 1.4rem 1.4rem;flex:1;display:flex;flex-direction:column}
+.proj-card .proj-info .proj-tag{font-size:0.68rem;font-weight:500;color:#c9a96e;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.3rem}
+.proj-card .proj-info h4{font-size:clamp(0.92rem,1.05vw,0.98rem);margin-bottom:0.3rem;font-weight:600;letter-spacing:0}
+.proj-card .proj-info p{font-size:0.84rem;color:#6b6b6b;margin-bottom:0.6rem;flex:1;line-height:1.6}
+.proj-card .proj-info .proj-meta{font-size:0.74rem;color:#b0b0b0;display:flex;gap:1rem;margin-top:auto}
+.proj-card .proj-info .proj-meta span{display:flex;align-items:center;gap:4px}
+.proj-grid-video{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.proj-card.video .proj-img{aspect-ratio:16/9}
+.writing-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.writing-card{background:#fff;border-radius:12px;padding:1.2rem 1.4rem;border:1px solid rgba(28,28,28,0.04);transition:all .35s ease;display:flex;flex-direction:column;gap:0.4rem;box-shadow:0 1px 2px rgba(28,28,28,0.02)}
+.writing-card:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(28,28,28,0.06),0 4px 12px rgba(28,28,28,0.02)}
+.writing-card .wc-cat{font-size:0.65rem;color:#c9a96e;font-weight:500;letter-spacing:0.06em;text-transform:uppercase}
+.writing-card h4{font-size:0.88rem;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;line-height:1.4}
+.writing-card p{font-size:0.78rem;color:#888;line-height:1.5}
+/* ── Awards ── */
+.awards-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.award-card{background:#fff;border-radius:14px;padding:1.8rem;border:1px solid rgba(28,28,28,0.04);transition:all .4s ease;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(28,28,28,0.02)}
+.award-card::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,#c9a96e,transparent);opacity:0;transition:opacity .4s}
+.award-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(28,28,28,0.07),0 4px 12px rgba(28,28,28,0.03)}
+.award-card:hover::before{opacity:1}
+.award-card .award-badge{display:inline-block;font-size:0.68rem;font-weight:600;padding:0.2rem 0.8rem;border-radius:100px;letter-spacing:0.04em;margin-bottom:0.6rem}.award-card .award-badge.national{color:#c9a96e;background:rgba(201,169,110,0.1)}.award-card .award-badge.province{color:#6b8e8e;background:rgba(107,142,142,0.1)}
+.award-card h4{font-size:0.95rem;font-weight:600;margin-bottom:0.3rem}
+.award-card p{font-size:0.84rem;color:#6b6b6b;line-height:1.6}
+/* ── Skills ── */
+.skills-container{display:grid;grid-template-columns:1.4fr 1fr;gap:2.5rem}
+.skills-cat{margin-bottom:1.8rem}.skills-cat:last-child{margin-bottom:0}
+.skills-cat h4{font-size:0.82rem;color:#c9a96e;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.8rem;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif}
+.skills-pills{display:flex;flex-wrap:wrap;gap:0.5rem}
+.skills-pills span{font-size:0.8rem;color:#4a4a4a;background:#f4f2ef;padding:0.35rem 1rem;border-radius:100px;border:1px solid rgba(28,28,28,0.03);transition:all .35s;box-shadow:0 1px 2px rgba(28,28,28,0.01)}
+.skills-pills span:hover{background:#c9a96e;color:#fff;border-color:#c9a96e;transform:translateY(-1px)}
+.skills-tools{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.skills-tools .st-item{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid rgba(28,28,28,0.04);transition:all .35s;box-shadow:0 1px 2px rgba(28,28,28,0.02)}
+.skills-tools .st-item:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(28,28,28,0.06),0 4px 10px rgba(28,28,28,0.02)}
+.skills-tools .st-item .st-icon{font-size:1.6rem;margin-bottom:0.3rem;display:block;color:#c9a96e}
+.skills-tools .st-item .st-name{font-weight:500;font-size:0.82rem}
+.skills-tools .st-item .st-level{font-size:0.7rem;color:#b0b0b0;margin-top:0.15rem}
+/* ── Contact ── */
+#contact{text-align:center;background:linear-gradient(180deg,transparent 0%,rgba(201,169,110,0.03) 50%,transparent 100%)}#contact h2::after{margin-left:auto;margin-right:auto}
+.contact-intro{max-width:480px;margin:0 auto 2.5rem;color:#6b6b6b;font-size:clamp(0.9rem,1rem,0.98rem)}
+.contact-circles{display:flex;justify-content:center;gap:1.2rem;flex-wrap:wrap}
+.contact-circle{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(28,28,28,0.08);color:#1c1c1c;transition:all .4s cubic-bezier(0.25,0.1,0.15,1);cursor:pointer}
+.contact-circle:hover{background:#c9a96e;border-color:#c9a96e;color:#fff;transform:translateY(-5px);box-shadow:0 14px 30px rgba(201,169,110,0.22)}
+.contact-circle svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.contact-circle.phone svg{stroke-width:2}
+.contact-info-text{margin-top:1.8rem;font-size:0.82rem;color:#999;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+.contact-info-text a{color:#6b6b6b;transition:color .3s}.contact-info-text a:hover{color:#c9a96e}
+/* ── Footer ── */
+footer{border-top:1px solid rgba(28,28,28,0.05);padding:2rem 28px;text-align:center}
+footer p{font-size:0.8rem;color:#b0b0b0}
+/* ── Lightbox ── */
+.lightbox{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease;padding:32px}
+.lightbox.active{opacity:1;pointer-events:auto}
+.lightbox img{max-width:95vw;max-height:90vh;border-radius:8px;box-shadow:0 24px 64px rgba(0,0,0,0.3);object-fit:contain}
+.lightbox .lb-close{position:absolute;top:24px;right:24px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.12);border:none;color:#fff;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s}
+.lightbox .lb-close:hover{background:rgba(255,255,255,0.2)}
+.video-modal{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease;padding:24px}
+.video-modal.active{opacity:1;pointer-events:auto}
+.video-modal video{max-width:95vw;max-height:88vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,0.3);background:#000}
+.video-modal .vm-close{position:absolute;top:24px;right:24px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s}
+.video-modal .vm-close:hover{background:rgba(255,255,255,0.2)}
+/* ── Animations ── */
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(0.25,0.1,0.15,1),transform .7s cubic-bezier(0.25,0.1,0.15,1)}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.fade-d1{transition-delay:0.08s}.fade-d2{transition-delay:0.16s}.fade-d3{transition-delay:0.24s}
+.fade-d4{transition-delay:0.32s}.fade-d5{transition-delay:0.4s}.fade-d6{transition-delay:0.48s}
+.fade-d7{transition-delay:0.56s}.fade-d8{transition-delay:0.64s}
+/* ── Responsive ── */
+@media(max-width:968px){.skills-container{grid-template-columns:1fr;gap:2rem}.awards-grid{grid-template-columns:1fr}}
+@media(max-width:820px){.exp-grid{grid-template-columns:1fr;gap:1.5rem}}
+@media(max-width:768px){
+.about-grid{max-width:100%}
+#navLinks{position:fixed;top:68px;left:0;right:0;bottom:0;background:rgba(250,250,249,0.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:2.8rem;opacity:0;pointer-events:none;transition:opacity .35s ease;z-index:999}
+#navLinks.open{opacity:1;pointer-events:auto}#navLinks a{font-size:1.15rem}
+.nav-toggle{display:flex}.proj-grid,.proj-grid-video,.writing-list{grid-template-columns:1fr}
+.skills-tools{grid-template-columns:repeat(2,1fr)}.contact-info-text{flex-direction:column;gap:0.6rem;align-items:center}
+section{padding:3rem 0}.btn{padding:0.7rem 1.6rem;font-size:0.85rem}
+}
+@media(max-width:400px){.skills-tools{grid-template-columns:1fr 1fr}.hero-actions{flex-direction:column;align-items:center}}
+#cursorGlow{position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:0;transition:background 0.4s ease}</style>
+</head>
+<body>
+<nav id="navbar" role="navigation">
+  <div style="width:26px;height:0"></div>
+  <button class="nav-toggle" id="navToggle" aria-label="切换导航菜单"><span></span><span></span><span></span></button>
+  <ul id="navLinks">
+    <li><a href="#about">关于我</a></li>
+    <li><a href="#experience">经历</a></li>
+    <li><a href="#projects">作品</a></li>
+    <li><a href="#awards">荣誉</a></li>
+    <li><a href="#skills">技能</a></li>
+    <li><a href="#contact">联系</a></li>
+  </ul>
+</nav>
+<section id="hero">
+  <div class="hero-inner container">
+    <p class="subtitle fade-in">Portfolio</p>
+    <h1 class="fade-in fade-d1">以文本丈量思想深度，<br>以创意连接文化温度</h1>
+    <p class="name-sub fade-in fade-d2">王玮 · 中国海洋大学 · 汉语言文学</p>
+    
+    <div class="hero-actions fade-in fade-d4">
+      <a href="#projects" class="btn btn-primary">浏览作品</a>
+      <a href="#contact" class="btn btn-outline">取得联系</a>
+    </div>
+  </div>
+  <div class="scroll-indicator"><span>SCROLL</span><div class="scroll-dot"></div></div>
+</section>
+<section id="about">
+  <div class="container">
+    <h2 class="fade-in">关于我</h2>
+    <div class="about-grid">
+      <div class="about-text fade-in fade-d1">
+        <p>具备扎实的文本创作功底与文学鉴赏能力，熟练掌握市场调研、品牌推广等全流程技能，运用多元创意手段将构想转化为有温度的文化表达。</p>
+        <p>擅长将传统文化以现代化方式重新诠释——无论是视觉设计、视频制作，还是活动策划与文案撰写，都追求内容与形式的深度融合。</p>
+        <p>相信好的创作源于对文化的敬畏与对细节的执着。持续学习，致力于让每一个作品都承载思想、传递温度。</p>
+        <div class="about-tags">
+          <span>📝 内容创作</span><span>🎨 PPT 设计</span><span>🎬 视频制作</span>
+          <span>📊 品牌策划</span><span>🤖 AI 工具应用</span><span>📖 文化传播</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="experience">
+  <div class="container">
+    <h2 class="fade-in">经历</h2>
+    <div class="exp-grid">
+      <div class="exp-block fade-in fade-d1">
+        <h3>🎓 教育</h3>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">2022.09 — 2026.06</div>
+            <h4>中国海洋大学</h4>
+            <p class="tl-sub">汉语言文学 · 本科</p>
+            <p>主修古代/现代汉语、文学概论、中国古今文学；辅修市场营销学、宏观/微观经济学、管理学。具备扎实的文本创作与深度解读能力，以及品牌推广全流程技能。</p>
+          </div>
+        </div>
+      </div>
+      <div class="exp-block fade-in fade-d2">
+        <h3>💼 实习</h3>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">2024.07 — 2024.08</div>
+            <h4>青岛市沙子口街道办事处</h4>
+            <p class="tl-sub">文旅中心 实习生</p>
+            <p>独立策划并落地 10+ 场文化活动；主导「寻迹非遗·文房四宝」主题策划，完成 12 张海报设计并获 5000+ 关注；撰写 20 余篇新闻稿及专题文章，相关活动获《农民日报》《青岛早报》报道及中国文明网转载，累计阅读量 10w+。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="projects">
+  <div class="container">
+    <h2 class="fade-in">作品</h2>
+    <!-- PPT: 文化类 -->
+    <div class="project-category fade-in">
+      <div class="cat-header">
+        <div class="cat-icon">🖌</div>
+        <h3>PPT 设计 · 文化类</h3>
+        <span class="cat-count">5 组</span>
+      </div>
+      <div class="proj-grid">
+        <div class="proj-card" onclick="openLightbox('PPT/文化类/拉呱儿——登瀛梨雪_01.png')">
+          <div class="proj-img"><img src="PPT/文化类/拉呱儿——登瀛梨雪_01.jpg" alt="拉呱儿——登瀛梨雪" loading="lazy"></div>
+          <div class="proj-info"><span class="proj-tag">Cultural</span><h4>拉呱儿——登瀛梨雪</h4><p>以青岛崂山登瀛梨雪为灵感的文化主题 PPT，将自然景观与人文叙事融合，呈现诗意的视觉语言。</p></div>
+        </div>
+        <div class="proj-card" onclick="openLightbox('PPT/文化类/梦回大宋 斗巧七夕（改）_01.png')">
+          <div class="proj-img"><img src="PPT/文化类/梦回大宋 斗巧七夕（改）_01.jpg" alt="梦回大宋 斗巧七夕" loading="lazy"></div>
+          <div class="proj-info"><span class="proj-tag">Cultural</span><h4>梦回大宋 · 斗巧七夕</h4><p>以宋代七夕文化为主题的活动策划 PPT，融合古典美学与现代设计手法，展现传统节日的当代魅力。</p></div>
+        </div>
+        <div class="proj-card" onclick="openLightbox('PPT/文化类/竹简主视觉_01.png')">
+          <div class="proj-img"><img src="PPT/文化类/竹简主视觉_01.jpg" alt="竹简主视觉" loading="lazy"></div>
+          <div class="proj-info"><span class="proj-tag">Cultural</span><h4>竹简诗会主视觉</h4><p>以竹简为设计元素的主视觉作品，将传统文化符号转化为现代视觉语言，体现古朴而雅致的东方美学。</p></div>
+        </div>
+        <div class="proj-card" onclick="openLightbox('PPT/文化类/篆刻(2)_01.png')">
+          <div class="proj-img"><img src="PPT/文化类/篆刻(2)_01.jpg" alt="篆刻" loading="lazy"></div>
+          <div class="proj-info"><span class="proj-tag">Cultural</span><h4>篆刻 · 方寸之间</h4><p>以中国传统篆刻艺术为主题的视觉设计，于方寸之间展现汉字之美与金石之韵。</p></div>
+        </div>
+        <div class="proj-card" onclick="openLightbox('PPT/文化类/翰墨清韵·诗情画意_01.png')">
+          <div class="proj-img"><img src="PPT/文化类/翰墨清韵·诗情画意_01.jpg" alt="翰墨清韵·诗情画意" loading="lazy"></div>
+          <div class="proj-info"><span class="proj-tag">Cultural</span><h4>翰墨清韵 · 诗情画意</h4><p>以诗词文化为主题的活动视觉设计，将水墨意境与现代排版结合，传递清雅悠远的东方韵味。</p></div>
+        </div>
+      </div>
+    </div>
+    <!-- PPT: 竞赛类 -->
+    <div class="project-category fade-in">
+      <div class="cat-header">
+        <div class="cat-icon">🏆</div>
+        <h3>PPT 设计 · 竞赛类</h3>
+        <span class="cat-count">8 组</span>
+      </div>
+      <div class="proj-grid">
+        <div class="proj-card" onclick="openLightbox('PPT/竞赛类/0a83793e9925cdd475996fcf588ea8af.png')">
+          <div class="proj-img"><img src="PPT/竞赛类/0a83793e9925cdd475996fcf588ea8af.jpg" alt="竞赛 PPT 作品" loading="lazy"></div>
+          <div class="proj-info"><span class="proj-tag">Competition</span><h4>竞赛演示设计 01</h4><p>海洋文化创意竞赛路演 PPT，以数据可视化与视觉叙事提升表达冲击力。</p></div>
+        </div>
+        <div class="proj-card" onclick="openLightbox('PPT/竞赛类/3fba7b4c13253b71a7ce979fdc3e2e15.png')">
+          <div class="proj-img"><img src="PPT/竞赛类/3fba7b4c13253b71a7ce979fdc3e2e15.jpg" alt="竞赛 PPT 作品" loading="lazy"></div>
+          <div class="proj-info"><span class="proj-tag">Competition</span><h4>竞赛演示设计 02</h4><p>创新大赛路演视觉方案，信息层级清晰、画面张力十足。</p></div>
+        </div>
+        <div class="proj-card" onclick="openLightbox('PPT/竞赛类/52b1a20492d1d045e6a157897d27587d.png')">
+          <div class="proj-img"><img src="PPT/竞赛类/52b1a20492d1d045e6a157897d27587d.jpg" alt="竞赛 PPT 作品" loading="lazy"></div>
+          <div class="proj-info"><span class="proj-tag">Competition</span><h4>竞赛演示设计 03</h4><p>品牌策划竞赛演示，以视觉统一性强化品牌辨识度。</p></div>
+        </div>
+        <div class="proj-card" onclick="openLightbox('PPT/竞赛类/66d007001f341ddbb8377a82304dbfcb.png')">
+          <div class="proj-img"><img src="PPT/竞赛类/66d007001f341ddbb8377a82304dbfcb.jpg" alt="竞赛 PPT 作品" loading="lazy"></div>
+          <div class="proj-info"><span class="proj-tag">Competition</span><h4>竞赛演示设计 04</h4><p>产品路演 PPT，图表与视觉元素有机融合，数据表达清晰有力。</p></div>
+        </div>
+        <div class="proj-card" onclick="openLightbox('PPT/竞赛类/8e587ee5c1677248b72a3261c1993011.png')">
+          <div class="proj-img"><img src="PPT/竞赛类/8e587ee5c1677248b72a3261c1993011.jpg" alt="竞赛 PPT 作品" loading="lazy"></div>
+          <div class="proj-info"><span class="proj-tag">Competition</span><h4>竞赛演示设计 05</h4><p>校园创业大赛路演，排版简明大气，关键信息一目了然。</p></div>
+        </div>
+        <div class="proj-card" onclick="openLightbox('PPT/竞赛类/b7667bbbb9589891ad6c81993bf2025c.png')">
+          <div class="proj-img"><img src="PPT/竞赛类/b7667bbbb9589891ad6c81993bf2025c.jpg" alt="竞赛 PPT 作品" loading="lazy"></div>
+          <div class="proj-info"><span class="proj-tag">Competition</span><h4>竞赛演示设计 06</h4><p>社会实践项目汇报，图文搭配兼顾信息密度与阅读节奏。</p></div>
+        </div>
+        <div class="proj-card" onclick="openLightbox('PPT/竞赛类/bb5fcafaf4230b1d1f303f1aea225870.png')">
+          <div class="proj-img"><img src="PPT/竞赛类/bb5fcafaf4230b1d1f303f1aea225870.jpg" alt="竞赛 PPT 作品" loading="lazy"></div>
+          <div class="proj-info"><span class="proj-tag">Competition</span><h4>竞赛演示设计 07</h4><p>乡村振兴方案路演，色彩克制典雅，视觉叙事层层递进。</p></div>
+        </div>
+        <div class="proj-card" onclick="openLightbox('PPT/竞赛类/c6f98a1f0a7b967afb36edb3d6c10c18.png')">
+          <div class="proj-img"><img src="PPT/竞赛类/c6f98a1f0a7b967afb36edb3d6c10c18.jpg" alt="竞赛 PPT 作品" loading="lazy"></div>
+          <div class="proj-info"><span class="proj-tag">Competition</span><h4>竞赛演示设计 08</h4><p>科技创新竞赛视觉，现代感与专业性兼具，细节考究。</p></div>
+        </div>
+      </div>
+    </div>
+    <!-- 视频作品 -->
+    <div class="project-category fade-in">
+      <div class="cat-header">
+        <div class="cat-icon">🎬</div>
+        <h3>视频作品</h3>
+        <span class="cat-count">5 部</span>
+      </div>
+      <div class="proj-grid proj-grid-video">
+        <div class="proj-card video" onclick="window.open('https://pan.quark.cn/s/1e1169e793b9','_blank')">
+          <div class="proj-img">
+            <img src="视频类/宣传片/荣成封面.png" alt="荣成城市宣传片" loading="lazy" style="object-fit:cover;object-position:center;width:100%;height:100%">
+            <div class="play-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1c1c1c" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+            <span class="video-badge">🎬 宣传片</span>
+          </div>
+          <div class="proj-info"><span class="proj-tag">Video</span><h4>荣成城市宣传片</h4><p>以延时摄影与地标镜头呈现荣成城市风貌，包含 6 处地标实地取景，展现城市光影交织的视觉魅力。</p></div>
+        </div>
+        <div class="proj-card video" onclick="window.open('https://pan.quark.cn/s/1e1169e793b9','_blank')">
+          <div class="proj-img">
+            <img src="视频类/宣传片/邮轮封面.png" alt="邮轮宣传片" loading="lazy" style="object-fit:cover;object-position:center;width:100%;height:100%">
+            <div class="play-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1c1c1c" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+            <span class="video-badge">🎬 宣传片</span>
+          </div>
+          <div class="proj-info"><span class="proj-tag">Video</span><h4>邮轮宣传片</h4><p>高端邮轮旅游宣传影片，以电影级镜头语言与精致后期制作呈现海洋旅行的独特魅力。</p></div>
+        </div>
+        <div class="proj-card video" onclick="window.open('https://pan.quark.cn/s/1e1169e793b9','_blank')">
+          <div class="proj-img">
+            <img src="视频类/党课/微党课定稿封面.png" alt="基建处微党课" loading="lazy" style="object-fit:cover;object-position:center;width:100%;height:100%">
+            <div class="play-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1c1c1c" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+            <span class="video-badge">🎬 党课</span>
+          </div>
+          <div class="proj-info"><span class="proj-tag">Video</span><h4>基建处微党课</h4><p>主题微党课视频，以生动影像讲述新时代奋斗故事，融合纪实手法与情感化叙事。</p></div>
+        </div>
+        <div class="proj-card video" onclick="window.open('https://pan.quark.cn/s/1e1169e793b9','_blank')">
+          <div class="proj-img">
+            <img src="视频类/竞赛/绿藻新能封面.png" alt="绿藻新能" loading="lazy" style="object-fit:cover;object-position:center;width:100%;height:100%">
+            <div class="play-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1c1c1c" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+            <span class="video-badge">🎬 竞赛</span>
+          </div>
+          <div class="proj-info"><span class="proj-tag">Video</span><h4>绿藻新能</h4><p>海洋科技创新竞赛视频作品，以绿藻能源转化爲主题，融合科普讲解与视觉创意。</p></div>
+        </div>
+        <div class="proj-card video" onclick="window.open('https://pan.quark.cn/s/1e1169e793b9','_blank')">
+          <div class="proj-img">
+            <img src="视频类/竞赛/游刃有余封面.png" alt="鲋韧有渔" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center">
+            <div class="play-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1c1c1c" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+            <span class="video-badge">🎬 竞赛</span>
+          </div>
+          <div class="proj-info"><span class="proj-tag">Video</span><h4>鮋韧有渔</h4><p>海洋渔业可持续发展主题竞赛视频，以纪实影像讲述海洋生态与人文故事的交织。</p></div>
+        </div>
+      </div>
+    </div>
+    <!-- 文稿作品 -->
+    <div class="project-category fade-in">
+      <div class="cat-header">
+        <div class="cat-icon">✍️</div>
+        <h3>文稿作品</h3>
+        <span class="cat-count">10+ 篇</span>
+      </div>
+      <div class="writing-list">
+        <div class="writing-card"><span class="wc-cat">新闻稿</span><h4>「寻迹非遗·文房四宝」主题活动报道</h4><p>获《农民日报》《青岛早报》专题报道，累计阅读 10w+</p></div>
+        <div class="writing-card"><span class="wc-cat">新闻稿</span><h4>「梦回大宋 · 斗巧七夕」传统文化体验活动</h4><p>获中国文明网转载报道</p></div>
+        <div class="writing-card"><span class="wc-cat">新闻稿</span><h4>世界粮食日文明实践活动新闻稿</h4><p>沙子口街道主题文明实践活动报道</p></div>
+        <div class="writing-card"><span class="wc-cat">新闻稿</span><h4>「诗词传古韵 经典咏流传」朗诵大赛</h4><p>传统文化进社区系列活动报道</p></div>
+        <div class="writing-card"><span class="wc-cat">新闻稿</span><h4>「翰墨金秋·诗情画意」中秋游园会报道</h4><p>中秋主题文化活动纪实</p></div>
+        <div class="writing-card"><span class="wc-cat">新闻稿</span><h4>「刀笔之美·篆刻之韵」非遗体验活动</h4><p>篆刻艺术传承与体验活动报道</p></div>
+        <div class="writing-card"><span class="wc-cat">新闻稿</span><h4>「拉呱儿——登瀛梨雪」文化沙龙</h4><p>崂山地域文化专题活动</p></div>
+        <div class="writing-card"><span class="wc-cat">新闻稿</span><h4>「小郎中」学医记 · 中医药文化体验活动</h4><p>青少年中医药文化科普活动报道</p></div>
+        <div class="writing-card"><span class="wc-cat">发言稿</span><h4>微专业结业典礼讲话稿</h4><p>为乔书记撰写微专业结业典礼致辞</p></div>
+        <div class="writing-card"><span class="wc-cat">发言稿</span><h4>青马工程开营仪式讲话稿</h4><p>管理学院青马工程开营仪式暨第一堂课讲稿</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="awards">
+  <div class="container">
+    <h2 class="fade-in">荣誉</h2>
+    <div class="awards-grid">
+      <div class="award-card fade-in fade-d1">
+        <span class="award-badge national">国家级 · 佳作奖</span>
+        <h4>全国大学生海洋文化创意设计大赛</h4>
+        <p>作品「鲸出重溟」系列鼠标全案设计及「奔流」城市宣传片，从全国 1114 所高校的 32,315 件作品中脱颖而出，荣获国家级佳作奖（获奖率 0.8%）。</p>
+        
+      </div>
+      <div class="award-card fade-in fade-d2">
+        <span class="award-badge province">省级 · 铜奖</span>
+        <h4>山东省大学生创新大赛</h4>
+        <p>Omega-3 减脂产品市场运营项目，运用 SPSS 构建「产品功效-价格敏感度」模型，制定线上线下整合推广策略，从 2,167 个项目中胜出，获省级铜奖。</p>
+        
+      </div>
+    </div>
+  </div>
+</section>
+<section id="skills">
+  <div class="container">
+    <h2 class="fade-in">技能</h2>
+    <div class="skills-container">
+      <div class="fade-in fade-d1">
+        <div class="skills-cat"><h4>内容创作</h4><div class="skills-pills"><span>文案策划</span><span>新闻采编</span><span>活动方案</span><span>品牌故事</span><span>社交媒体运营</span></div></div>
+        <div class="skills-cat"><h4>视觉设计</h4><div class="skills-pills"><span>PPT 设计</span><span>海报视觉</span><span>排版构图</span><span>色彩搭配</span><span>主视觉设计</span></div></div>
+        <div class="skills-cat"><h4>视频制作</h4><div class="skills-pills"><span>Premiere Pro</span><span>分镜脚本</span><span>延时摄影</span><span>后期剪辑</span><span>视频包装</span></div></div>
+        <div class="skills-cat"><h4>AI 与办公</h4><div class="skills-pills"><span>ChatGPT</span><span>Claude</span><span>AI Agent 工作流</span><span>Prompt 工程</span><span>Word / Excel / PPT</span></div></div>
+      </div>
+      <div class="fade-in fade-d2">
+        <div class="skills-tools">
+          <div class="st-item"><span class="st-icon">📝</span><div class="st-name">文案策划</div><div class="st-level">精通</div></div>
+          <div class="st-item"><span class="st-icon">🎨</span><div class="st-name">PPT 设计</div><div class="st-level">精通</div></div>
+          <div class="st-item"><span class="st-icon">🎬</span><div class="st-name">视频剪辑</div><div class="st-level">熟练</div></div>
+          <div class="st-item"><span class="st-icon">📊</span><div class="st-name">市场调研</div><div class="st-level">熟练</div></div>
+          <div class="st-item"><span class="st-icon">🤖</span><div class="st-name">AI 应用</div><div class="st-level">熟练</div></div>
+          <div class="st-item"><span class="st-icon">📖</span><div class="st-name">文学创作</div><div class="st-level">精通</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="container">
+    <h2 class="fade-in">联系方式</h2>
+    <p class="contact-intro fade-in fade-d1">如果有合作的想法，或者只是想打个招呼，<br>欢迎通过以下方式找到我。</p>
+    <div class="contact-circles fade-in fade-d2">
+      <a href="mailto:tsukimistudio@qq.com" class="contact-circle" aria-label="邮箱"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 4l10 8 10-8"/></svg></a>
+      <a href="tel:19382161615" class="contact-circle phone" aria-label="电话"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></a>
+      <a href="#" class="contact-circle" aria-label="微信" id="wechatBtn"><svg viewBox="0 0 24 24"><path d="M8.5 11a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm7-3a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"/><path d="M21 12a9 9 0 01-9 9c-1.9 0-3.66-.59-5.12-1.6L3 21l1.6-3.88A8.93 8.93 0 013 12a9 9 0 019-9 9 9 0 019 9z"/></svg></a>
+    </div>
+    <div class="contact-info-text fade-in fade-d3">
+      <a href="mailto:tsukimistudio@qq.com">✉ tsukimistudio@qq.com</a>
+      <a href="tel:19382161615">☏ 193-8216-1615</a>
+    </div>
+  </div>
+</section>
+<footer><div class="container"><p>&copy; 2026 · 用心创作，始终如一</p></div></footer>
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lb-close" onclick="closeLightbox()">×</button>
+  <img id="lightboxImg" src="" alt="作品预览">
+</div>
+<div class="video-modal" id="videoModal" onclick="closeVideoModal(event)">
+  <button class="vm-close" onclick="closeVideoModal()">×</button>
+  <video id="modalVideo" controls playsinline><source id="modalVideoSrc" src="" type="video/mp4"></video>
+</div>
+<script>
+(function(){var n=document.getElementById('navbar'),t=false;window.addEventListener('scroll',function(){if(!t){window.requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>50);t=false});t=true}},{passive:true})})();
+(function(){var t=document.getElementById('navToggle'),l=document.getElementById('navLinks');t.addEventListener('click',function(){t.classList.toggle('active');l.classList.toggle('open')});l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){t.classList.remove('active');l.classList.remove('open')})})})();
+(function(){var o=new IntersectionObserver(function(e){e.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');o.unobserve(e.target)}})},{threshold:0.08});document.querySelectorAll('.fade-in').forEach(function(e){o.observe(e)})})();
+function openLightbox(s){document.getElementById('lightboxImg').src=s;document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden'}
+function closeLightbox(e){if(e&&e.target!==e.currentTarget)return;document.getElementById('lightbox').classList.remove('active');document.getElementById('lightboxImg').src='';document.body.style.overflow=''}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeLightbox();closeVideoModal()}});
+function openVideo(s,t){var m=document.getElementById('videoModal'),v=document.getElementById('modalVideo'),se=document.getElementById('modalVideoSrc');se.src=s;v.load();m.classList.add('active');document.body.style.overflow='hidden';v.play().catch(function(){})}
+function closeVideoModal(e){if(e&&e.target!==e.currentTarget)return;var m=document.getElementById('videoModal'),v=document.getElementById('modalVideo');m.classList.remove('active');v.pause();v.currentTime=0;document.getElementById('modalVideoSrc').src='';document.body.style.overflow=''}
+document.getElementById('wechatBtn').addEventListener('click',function(e){e.preventDefault();alert('微信ID：Tsuk1mi')});
+</script>
+<div id="cursorGlow"></div><script>document.addEventListener("mousemove",function(e){var g=document.getElementById("cursorGlow");if(g){var r=Math.round(e.clientX);var s=Math.round(e.clientY);g.style.background="radial-gradient(700px at "+r+"px "+s+"px,rgba(201,169,110,0.18),transparent 65%)"}});</script></body>
+</html>

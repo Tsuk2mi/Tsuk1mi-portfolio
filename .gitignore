@@ -1,0 +1,11 @@
+# 视频文件不上传（已替换为网盘链接）
+视频类/**/*.mp4
+# 系统文件
+.DS_Store
+Thumbs.db
+# 临时脚本
+*.py
+_fix.py
+_debug.txt
+*_vid_debug.txt
+*.py
