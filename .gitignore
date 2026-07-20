@@ -9,3 +9,10 @@ _fix.py
 _debug.txt
 *_vid_debug.txt
 *.py
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
